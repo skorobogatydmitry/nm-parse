@@ -105,6 +105,12 @@ fn parse_content(content: String) -> Vec<ScanRecord> {
                     if !port_node.is_element() {
                         continue;
                     }
+
+                    // there is also, at least extraports tag
+                    if !port_node.has_tag_name("port") {
+                        continue;
+                    }
+
                     let port: u16 = port_node
                         .attribute("portid")
                         .expect(&format!("port {:?} has no id (number)", port_node))
